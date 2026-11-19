@@ -317,6 +317,17 @@
   .continuous-home #work-section .exhibit-poster {
     max-height: 240px;
   }
+
+  /* The fallback images reserve the same space once the fixed canvas takes over. */
+  .continuous-home.home-exhibit:has(.home-spatial.spatial-ready) .exhibit-poster:not(.exhibit-poster-dark),
+  :root.dark .continuous-home.home-exhibit:has(.home-spatial.spatial-ready) .exhibit-poster-dark {
+    display: block;
+    visibility: hidden;
+  }
+
+  :root.dark .continuous-home.home-exhibit:has(.home-spatial.spatial-ready) .exhibit-poster:not(.exhibit-poster-dark) {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

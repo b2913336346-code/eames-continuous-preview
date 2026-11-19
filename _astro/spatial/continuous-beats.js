@@ -1,6 +1,6 @@
 // Keep the six existing beats. Career and journal insert two poses into the same exhibit.
 const career = {
-  anchor: [.235, -.03], scale: .88, face: .13, line: .61,
+  anchor: [.253, .105], scale: .88, face: .23, line: .73,
   poses: [
     [-1.30, -.42, .47, -.40, .56, -.43],
     [.06, .58, -.17, -.52, .39, .08],
@@ -8,7 +8,7 @@ const career = {
   ],
 };
 const journal = {
-  anchor: [.24, -.07], scale: .88, face: .13, line: .72,
+  anchor: [.24, .04], scale: .88, face: .22, line: .76,
   poses: [
     [.02, -.05, .20, -.26, 1.19, -.07],
     [-.82, .04, -.08, -.41, -.31, -.09],
@@ -22,6 +22,10 @@ function withRoll(beat) {
 
 export function adaptBeats(base) {
   const [opening, about, work, growth, interests, contact] = base.map(withRoll);
+  Object.assign(about, { anchor: [.26, .10], face: .29, line: .65 });
+  Object.assign(growth, { face: .30, line: .72 });
+  Object.assign(interests, { face: .05, line: .74 });
+  Object.assign(contact, { face: .22, line: .74 });
   return { beats: [opening, about, growth, career, work, journal, interests, contact], workBeat: work };
 }
 
@@ -31,6 +35,25 @@ export function fitPlate([width, height, depth, path], index) {
   const ratio = mediaRatios[index];
   const fittedWidth = Math.min(width, height * ratio);
   return [fittedWidth, fittedWidth / ratio, Math.min(depth, .013), path];
+}
+
+export async function decodePlate(blob) {
+  if (typeof createImageBitmap === 'function') {
+    try {
+      return await createImageBitmap(blob, { imageOrientation: 'flipY' });
+    } catch {
+      // Fall back to the image decoder if ImageBitmap creation is unavailable.
+    }
+  }
+  const url = URL.createObjectURL(blob);
+  try {
+    const image = new Image();
+    image.src = url;
+    await image.decode();
+    return image;
+  } finally {
+    URL.revokeObjectURL(url);
+  }
 }
 
 export function chapterDetails(T, parent, resources) {
@@ -52,13 +75,13 @@ export function chapterDetails(T, parent, resources) {
   meshes[1].position.set(.02, -.05, .29);
   meshes[1].rotation.set(-.25, 0, -.07);
 
-  return function update(first, second, mix, edge) {
+  return function update(first, second, mix, edge, visibility) {
     guides.forEach(({ chapter, opacity }, index) => {
       const weight = (first === chapter ? 1 - mix : 0) + (second === chapter ? mix : 0);
       const mesh = meshes[index];
       mesh.visible = weight > .015;
       mesh.material.color.set(edge);
-      mesh.material.opacity = opacity * weight;
+      mesh.material.opacity = opacity * weight * visibility;
     });
   };
 }

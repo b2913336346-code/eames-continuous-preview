@@ -15,7 +15,7 @@ function mount(host) {
   const readingPoints = [...document.querySelectorAll('[data-journey] .event')];
   const options = { variant: Number(host.dataset.variant ?? 0), count: readingPoints.length };
   const state = { x: 0, y: 0, scroll: 0, engagement: 0 };
-  if (isHome) Object.assign(state, { work01: 0, work02: 0, work03: 0 });
+  if (isHome) Object.assign(state, { work01: 0, work02: 0, work03: 0, mobileY: 0, mobileFade: 1 });
   const input = { ...state };
   const axes = Object.keys(state);
   const connection = navigator.connection;
@@ -40,7 +40,7 @@ function mount(host) {
   const home = isHome ? bindHomeInput(host, input, schedule, events) : null;
 
   function requested() {
-    return !reduced.matches && !compact.matches && !(isHome && compactHome.matches) && !connection?.saveData && !lowCapacity && !failed;
+    return !reduced.matches && !connection?.saveData && !failed && (isHome || (!compact.matches && !lowCapacity));
   }
 
   function active() {
@@ -162,7 +162,7 @@ function mount(host) {
       if (!active() || pending.signal.aborted) return;
       const nextCanvas = document.createElement('canvas');
       nextCanvas.setAttribute('aria-hidden', 'true');
-      const nextView = await createView(nextCanvas, name, { ...options, signal: pending.signal });
+      const nextView = await createView(nextCanvas, name, { ...options, low: isHome && (compact.matches || compactHome.matches || lowCapacity), signal: pending.signal });
       if (!active() || pending.signal.aborted) {
         nextView.dispose();
         return;

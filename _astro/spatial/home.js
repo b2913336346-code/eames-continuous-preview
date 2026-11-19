@@ -1,5 +1,5 @@
 import * as T from './engine/three.min.js';
-import { adaptBeats, chapterDetails, fitPlate } from './continuous-beats.js';
+import { adaptBeats, chapterDetails, decodePlate, fitPlate } from './continuous-beats.js';
 
 const plates = [
   [1.15, 2.05, .044, '/eames-continuous-preview/images/projects/yingji/home-screen.webp'],
@@ -86,9 +86,9 @@ export function buildHomeComposition({ signal, assetBase = '' } = {}) {
     const ready = fetch(assetBase + path, { signal }).then(response => {
       if (!response.ok) throw new Error('Exhibit image unavailable');
       return response.blob();
-    }).then(blob => createImageBitmap(blob, { imageOrientation: 'flipY' })).then(bitmap => {
+    }).then(blob => decodePlate(blob)).then(bitmap => {
       if (disposed || signal?.aborted) {
-        bitmap.close();
+        bitmap.close?.();
         return;
       }
       const texture = new T.Texture(bitmap);
@@ -107,7 +107,7 @@ export function buildHomeComposition({ signal, assetBase = '' } = {}) {
   return {
     pivot,
     ready: Promise.all(panels.map(panel => panel.ready)),
-    update({ scroll, x, y, work01, work02, work03, width, height, palette, poster = false }) {
+    update({ scroll, x, y, work01, work02, work03, width, height, palette, mobileY, mobileFade, poster = false }) {
       const current = Math.min(beats.length - 1, Math.max(0, scroll));
       const start = Math.floor(current);
       const first = beats[start];
@@ -122,10 +122,16 @@ export function buildHomeComposition({ signal, assetBase = '' } = {}) {
       const anchorX = lerp(lerp(first.anchor[0], second.anchor[0], mix), workBeat.anchor[0], focusTotal) * spanX;
       const anchorY = lerp(lerp(first.anchor[1], second.anchor[1], mix), workBeat.anchor[1], focusTotal) * spanY;
 
-      pivot.position.set(poster ? 0 : T.MathUtils.clamp(anchorX, margin - spanX / 2, spanX / 2 - margin),
-        poster ? 0 : anchorY, 0);
-      pivot.scale.setScalar(lerp(lerp(first.scale, second.scale, mix), workBeat.scale, focusTotal));
-      pivot.rotation.set(y * .145, x * .155, 0);
+      const narrow = !poster && width <= 900;
+      const responsiveScale = narrow ? Math.min(.82, spanX / 4.6) : 1;
+      const offset = Math.max(0, spanX / 2 - margin);
+      const centerX = narrow ? 0 : T.MathUtils.clamp(anchorX, -offset, offset);
+      const centerY = narrow ? mobileY * spanY : anchorY;
+      const drift = poster ? 0 : Math.sin(current * Math.PI);
+      pivot.position.set(poster ? 0 : centerX, poster ? 0 : centerY, 0);
+      pivot.scale.setScalar(lerp(lerp(first.scale, second.scale, mix), workBeat.scale, focusTotal) * responsiveScale);
+      pivot.rotation.set(y * .145 + drift * .12, x * .155 + drift * .24, drift * .05);
+      const sceneVisibility = narrow ? mobileFade : 1;
       const faceOpacity = lerp(first.face, second.face, mix);
       const lineOpacity = lerp(first.line, second.line, mix);
 
@@ -140,22 +146,22 @@ export function buildHomeComposition({ signal, assetBase = '' } = {}) {
         group.position.set(position[0], position[1], position[2]);
         group.rotation.set(position[3], position[4], position[5] ?? 0);
         group.scale.setScalar(1 + .04 * focus[i]);
-        const faceStrength = lerp(faceOpacity, .76, focusTotal) + .24 * focus[i];
+        const faceStrength = (lerp(faceOpacity, .76, focusTotal) + .24 * focus[i]) * sceneVisibility;
         setOpacity(solid, faceStrength * .95);
-        setOpacity(outline, lineOpacity * (1 - T.MathUtils.smoothstep(faceStrength, .20, .73)));
+        setOpacity(outline, lineOpacity * sceneVisibility * (1 - T.MathUtils.smoothstep(faceStrength, .20, .73)));
         if (face) setOpacity(face, faceStrength);
         if (palette !== activeTheme) {
           solid.material.color.set(palette.metal);
           outline.material.color.set(palette.edge);
         }
       });
-      drawDetails(first, second, mix, palette.edge);
+      drawDetails(first, second, mix, palette.edge, sceneVisibility);
       activeTheme = palette;
     },
     dispose() {
       disposed = true;
       for (const resource of resources) {
-        if (resource.isTexture) resource.image.close();
+        if (resource.isTexture) resource.image.close?.();
         resource.dispose();
       }
       resources.clear();

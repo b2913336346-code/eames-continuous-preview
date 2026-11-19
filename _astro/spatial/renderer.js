@@ -42,7 +42,7 @@ export async function createView(canvas, name, options) {
     signal?.throwIfAborted();
     renderer = new T.WebGLRenderer({ canvas, context: gl, ...attributes });
     renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, home || low || poster ? 1 : 1.5));
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, low ? .85 : home || poster ? 1 : 1.5));
     renderer.outputColorSpace = T.SRGBColorSpace;
     renderer.toneMapping = T.ACESFilmicToneMapping;
     renderer.toneMappingExposure = home ? 1.24 : 1.12;
@@ -63,7 +63,7 @@ export async function createView(canvas, name, options) {
     let theme;
     return {
       draw({ w, h, x = 0, y = 0, scroll = 0, engagement = 0, focus = -1, reading = -1,
-        work01 = 0, work02 = 0, work03 = 0, palette }) {
+        work01 = 0, work02 = 0, work03 = 0, mobileY = 0, mobileFade = 1, palette }) {
         if (width !== w || height !== h) {
           width = w;
           height = h;
@@ -84,7 +84,7 @@ export async function createView(canvas, name, options) {
             key.intensity = palette.intensity;
             fill.intensity = palette.intensity * .55;
           }
-          composition.update({ scroll, x, y, work01, work02, work03, width, height, palette, poster });
+          composition.update({ scroll, x, y, work01, work02, work03, width, height, palette, mobileY, mobileFade, poster });
         } else {
           composition.pivot.rotation.set(y * .125, x * .155, 0);
           composition.update({ scroll, engagement, focus, reading });

@@ -7,6 +7,7 @@ export function bindHomeInput(host, input, schedule, events) {
   const cards = [...work.querySelectorAll('[data-home-work]')];
   const sections = [...document.querySelectorAll('main [data-exhibit]')];
   const workIndex = sections.indexOf(work);
+  const slots = sections.map(section => [...section.querySelectorAll('.exhibit-poster')]);
   const style = getComputedStyle(host);
   let stops = [];
   let hovered = -1;
@@ -59,11 +60,31 @@ export function bindHomeInput(host, input, schedule, events) {
     const next = stops.findIndex(stop => stop > y);
     if (next > 0) {
       const transitionStart = Math.max(stops[next - 1], stops[next] - height * .86);
-      input.scroll = next - 1 + clamp((y - transitionStart) / Math.max(1, stops[next] - transitionStart), 0, 1);
+      const progress = clamp((y - stops[next - 1]) / Math.max(1, stops[next] - stops[next - 1]), 0, 1);
+      const change = clamp((y - transitionStart) / Math.max(1, stops[next] - transitionStart), 0, 1);
+      input.scroll = next - 1 + .52 * progress + .48 * change;
     } else {
       input.scroll = stops.length - 1;
     }
 
+    if (root.clientWidth <= 900) {
+      const index = lastDark ? 1 : 0;
+      const center = height * .54;
+      let bestWeight = 0;
+      let bestCenter = center;
+      for (const images of slots) {
+        const { top, height: slotHeight } = images[index].getBoundingClientRect();
+        const middle = top + slotHeight / 2;
+        const weight = clamp(1 - Math.abs(middle - center) / (height * .56), 0, 1);
+        if (weight > bestWeight) {
+          bestWeight = weight;
+          bestCenter = middle;
+        }
+      }
+      const target = clamp(bestCenter / height, .23, .80);
+      input.mobileY = .5 - (.59 + (target - .59) * bestWeight);
+      input.mobileFade = .22 + .78 * bestWeight;
+    }
     scrolled = readingCard(y, height);
     const { top, bottom } = work.getBoundingClientRect();
     const workVisible = top < height * .9 && bottom > 96;
