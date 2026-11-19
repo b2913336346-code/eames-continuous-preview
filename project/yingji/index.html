@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f7f7f5"><meta name="description" content="个人开发的 Android 观影应用，支持观影记录、观影习惯记录和基于习惯的影视推荐，三项功能均已可用。"><meta name="google-site-verification" content="nmjJGAVucz3XckKgiv9izPDpC2PB2AFtNND5YTSFeR4"><link rel="canonical" href="https://b2913336346-code.github.io/project/yingji/"><link rel="sitemap" href="/eames-continuous-preview/sitemap-index.xml"><meta property="og:type" content="website"><meta property="og:site_name" content="卜文旭 / Eames"><meta property="og:title" content="影迹 · YingJi · Eames"><meta property="og:description" content="个人开发的 Android 观影应用，支持观影记录、观影习惯记录和基于习惯的影视推荐，三项功能均已可用。"><meta property="og:locale" content="zh_CN"><meta property="og:url" content="https://b2913336346-code.github.io/project/yingji/"><meta property="og:image" content="https://b2913336346-code.github.io/images/site/share-card.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="卜文旭 / Eames · 探索 · 思考 · 创造"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/eames-continuous-preview/favicon.svg" type="image/svg+xml"><title>影迹 · YingJi · Eames</title><noscript><style>.nav .actions { display: none; } @media (max-width: 1000px) { header.nav { position: static; } .nav .mobile-panel { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--line); padding: 12px 20px; } .nav .mobile-panel a { font-size: 13px; } }</style></noscript><script>
+      try {
+        const stored = localStorage.getItem('eames-theme');
+        const dark = stored === 'dark' || (!stored && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#111111' : '#f7f7f5');
+      } catch {}
+    </script><link rel="stylesheet" href="/eames-continuous-preview/_astro/BaseLayout.BB08-zQO.css"><link rel="stylesheet" href="/eames-continuous-preview/_astro/motion.css"><link rel="stylesheet" href="/eames-continuous-preview/_astro/spatial/stage.css"><link rel="stylesheet" href="/eames-continuous-preview/_astro/continuous/site.css"><meta name="robots" content="noindex"></head><body id="top" class="continuous-detail"><a href="#main" class="skip">跳到正文</a><header class="nav"><div class="wrap nav-inner"><a class="logo" href="/eames-continuous-preview/#top" aria-label="Eames 首页">EAMES<span aria-hidden="true">.</span></a><button class="iconbtn" id="theme" type="button" aria-label="切换到深色主题" aria-pressed="false" title="切换明暗主题"><span aria-hidden="true">◐</span></button></div></header><main id="main" tabindex="-1"><div class="wrap page"><a class="back" href="/eames-continuous-preview/#work-yingji" data-home-return>返回作品</a><div class="page-header"><div class="spatial-header-copy"><div class="eyebrow">PERSONAL APP / PROJECT</div><h1 class="page-title">影迹 · YingJi</h1><p class="page-lead">个人开发的 Android 观影应用，支持观影记录、观影习惯记录和基于习惯的影视推荐，三项功能均已可用。</p></div>
+
+</div><div class="page-body"><div class="project-art detail" aria-hidden="true"><span class="corner">PERSONAL APP</span><strong>影迹</strong></div><div class="project-status"><span class="chip">已实现 · 持续迭代</span></div><section class="content prose"><h2 id="technical-plan">技术方案</h2><div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">MVVM</span><span class="chip">Room</span><span class="chip">Coroutines / Flow</span><span class="chip">DeepSeek API</span></div></section><article class="content prose"><h2 id="项目概述">项目概述</h2>
+<p>「影迹」是一款面向个人使用的 Android 影视记录与智能观影应用，把影视兴趣、应用开发与 AI 产品探索结合起来。</p>
+<p>项目由我个人开发完成。观影记录、观影习惯记录和基于观影习惯的影视作品推荐均已可用，目前仍在持续完善体验。</p>
+<p>项目已开源：<a href="https://github.com/b2913336346-code/YingJi">查看 GitHub 源码与文档 ↗</a> · <a href="https://github.com/b2913336346-code/YingJi/releases">查看版本发布与 APK ↗</a></p>
+<h2 id="为什么做影迹">为什么做影迹</h2>
+<p>我了解到，一些用户在观看影视作品时，不便记录自己的观影记录与观影习惯，也希望能根据自己的习惯获得影视推荐。「影迹」围绕这些需求展开，让记录与推荐在同一款应用中衔接起来。</p>
+<h2 id="我的角色">我的角色</h2>
+<p>个人开发完成。</p>
+<h2 id="目前可用的核心功能">目前可用的核心功能</h2>
+<ul>
+<li><strong>观影记录</strong>：记录观看过的影视作品。</li>
+<li><strong>观影习惯</strong>：记录个人观影习惯。</li>
+<li><strong>影视推荐</strong>：根据观影习惯推荐影视作品。</li>
+</ul>
+<h3 id="基础记录能力">基础记录能力</h3>
+<ul>
+<li><strong>作品管理</strong>：管理个人影视记录。</li>
+<li><strong>分类与标签</strong>：通过分类和标签整理作品。</li>
+<li><strong>观看状态</strong>：记录作品的观看状态。</li>
+</ul>
+<h2 id="ai-观影推荐">AI 观影推荐</h2>
+<p>基于观影习惯的影视作品推荐已可用。项目已接入 DeepSeek API，并继续围绕个人观影记录与偏好探索观影画像。</p>
+<h2 id="推荐如何形成">推荐如何形成</h2>
+<ol>
+<li><strong>准备候选</strong>：通过资料网关读取 TMDB 电影、剧集候选，并核对对应详情。</li>
+<li><strong>确认偏好摘要</strong>：在个性化推荐前，向用户展示本次使用的画像摘要，确认后再发起模型请求。</li>
+<li><strong>理解推荐方向</strong>：DeepSeek 根据偏好摘要提供主题方向与筛选条件。</li>
+<li><strong>筛选与排序</strong>：应用依据候选资料、偏好和条件在本地完成筛选与排序。</li>
+</ol>
+<p>作品名称和详情来自影视资料源，模型输出限定为推荐方向与条件。</p>
+<h2 id="产品定位">产品定位</h2>
+<p>当前以个人使用为主，优先本地使用与成本控制，不以多用户商业化为第一目标。</p>
+<h2 id="开发中遇到的难点">开发中遇到的难点</h2>
+<p>难点在于让推荐对应到可核对的真实影视资料，并处理资料获取链路中的网络与异常问题。</p>
+<p>目前，作品资料使用 TMDB 数据源，应用通过独立的资料网关读取候选、详情与海报，再核对作品信息。DeepSeek 提供偏好方向与筛选条件，应用据此对候选进行筛选和排序。</p>
+<p>这一实现将影视资料、模型建议和本地排序分开处理。缺少有效候选时保留空结果，资料请求失败时提供错误反馈。资料源接入仍在持续完善与验证。</p>
+<p>开发记录中曾出现上游直连受限，并记录过经代理完成本机只读验证的过程。资料网关的持续接入与验证，是这一部分后续完善的重点。</p>
+<h2 id="当前进展">当前进展</h2>
+<p>在已有基础记录与 AI 功能之上，继续完善交互、测试和功能体验。公开发布页已提供 v3.0.0，后续版本、安装包与更新说明以 GitHub Releases 为准。下方界面与视频来自独立验收版，不作为公开安装包的实测记录。</p>
+<h3 id="真实调用与测试模式">真实调用与测试模式</h3>
+<p>真实模型调用需要启用对应构建配置、配置模型凭据，并确认本次画像摘要；开发版本同时保留 Mock 测试模式。真实调用效果示例仍待补充。</p>
+<h2 id="真实界面与演示">真实界面与演示</h2>
+<div id="yingji-showcase"><p>以下素材录制于 2026 年 11 月 6 日，来自独立验收版 3.0.0-uiacceptance。界面与操作为实际录制，作品数据用于演示。</p><aside class="notice">AI 部分为 Mock 本地虚构演示，不代表真实模型或 TMDB 推荐结果。示例作品没有海报，保留画面原有的「无海报」状态。</aside><div class="feature-list" role="group" aria-label="影迹真实界面截图">
+<details name="yingji-features" class="feature-panel" open><summary>首页 · 观影记录</summary><div class="feature-content"><p>使用 Mock 示例作品展示记录列表与 AI 入口。</p><figure class="life-image"><a class="life-image-link" href="/eames-continuous-preview/_astro/home.DgDaGkx2_Z2mY4pb.webp" aria-label="查看「首页 · 观影记录」大图" data-image-viewer data-viewer-title="首页 · 观影记录"><img src="/eames-continuous-preview/_astro/home.DgDaGkx2_ZlxQb2.webp" srcset="/eames-continuous-preview/_astro/home.DgDaGkx2_uN4rr.webp 480w, /eames-continuous-preview/_astro/home.DgDaGkx2_ZlxQb2.webp 960w, /eames-continuous-preview/_astro/home.DgDaGkx2_Z2mY4pb.webp 1080w" alt="影迹首页，列表中显示 Mock 演示作品 1，下方为明确标注 Mock 演示的 AI 区域" sizes="240px" loading="lazy" decoding="async" width="960" height="1707"></a></figure></div></details>
+<details name="yingji-features" class="feature-panel"><summary>搜索 · 组合筛选</summary><div class="feature-content"><p>名称、分类、标签、观看状态、时间与排序的查询入口。</p><figure class="life-image"><a class="life-image-link" href="/eames-continuous-preview/_astro/search.DIeSGGAV_Z38FBA.webp" aria-label="查看「搜索 · 组合筛选」大图" data-image-viewer data-viewer-title="搜索 · 组合筛选"><img src="/eames-continuous-preview/_astro/search.DIeSGGAV_Z1MJwqe.webp" srcset="/eames-continuous-preview/_astro/search.DIeSGGAV_ZoxEPi.webp 480w, /eames-continuous-preview/_astro/search.DIeSGGAV_Z1MJwqe.webp 960w, /eames-continuous-preview/_astro/search.DIeSGGAV_Z38FBA.webp 1080w" alt="影迹搜索页，包含名称搜索、分类、标签、观看状态、观看时间和排序控件，下方是示例作品" sizes="240px" loading="lazy" decoding="async" width="960" height="1707"></a></figure></div></details>
+<details name="yingji-features" class="feature-panel"><summary>我的 · 设置与分类</summary><div class="feature-content"><p>主题、默认展示、默认排序与分类管理入口。</p><figure class="life-image"><a class="life-image-link" href="/eames-continuous-preview/_astro/profile.C1BJemij_1bhIX5.webp" aria-label="查看「我的 · 设置与分类」大图" data-image-viewer data-viewer-title="我的 · 设置与分类"><img src="/eames-continuous-preview/_astro/profile.C1BJemij_1pbDfP.webp" srcset="/eames-continuous-preview/_astro/profile.C1BJemij_1Xebvw.webp 480w, /eames-continuous-preview/_astro/profile.C1BJemij_1pbDfP.webp 960w, /eames-continuous-preview/_astro/profile.C1BJemij_1bhIX5.webp 1080w" alt="影迹我的页面，展示主题切换、示例作品总数、默认展示方式、默认排序及分类列表" sizes="240px" loading="lazy" decoding="async" width="960" height="1707"></a></figure></div></details>
+<details name="yingji-features" class="feature-panel"><summary>AI · Mock 结果与反馈</summary><div class="feature-content"><p>本地虚构示例，展示结果、反馈与加入影迹入口。</p><figure class="life-image"><a class="life-image-link" href="/eames-continuous-preview/_astro/ai-mock-results.CPR_u27D_2javFY.webp" aria-label="查看「AI · Mock 结果与反馈」大图" data-image-viewer data-viewer-title="AI · Mock 结果与反馈"><img src="/eames-continuous-preview/_astro/ai-mock-results.CPR_u27D_Z12tB4T.webp" srcset="/eames-continuous-preview/_astro/ai-mock-results.CPR_u27D_Z1Nu7yF.webp 480w, /eames-continuous-preview/_astro/ai-mock-results.CPR_u27D_Z12tB4T.webp 960w, /eames-continuous-preview/_astro/ai-mock-results.CPR_u27D_2javFY.webp 1080w" alt="影迹的三个 Mock 虚构示例结果，明确说明未使用真实画像或模型排序，并提供喜欢、不喜欢、不感兴趣和加入影迹入口" sizes="240px" loading="lazy" decoding="async" width="960" height="1707"></a></figure></div></details>
+</div><h3>90 秒功能演示</h3><p id="yingji-demo-note">展示新增与编辑作品、观看状态、分类标签、搜索筛选、统计及备份导出等操作。AI 片段为 Mock 本地虚构演示。视频无音轨，片中包含功能标题。</p><figure class="project-video-figure"><div class="project-video-cover"><video crossorigin="anonymous" id="yingji-demo" class="project-video yingji-demo-video" controls playsInline preload="none" loading="lazy" width="1080" height="1920" poster="/eames-continuous-preview/images/projects/yingji/demo-cover.png" aria-label="影迹 90 秒功能演示（AI 为 Mock）" aria-describedby="yingji-demo-note"><source src="https://b2913336346-code.github.io/videos/projects/yingji/demo-90s.mp4" type="video/mp4"/><track src="https://b2913336346-code.github.io/videos/projects/yingji/demo-90s.zh-CN.vtt" kind="captions" srcLang="zh-CN" label="中文功能说明"/><p>当前浏览器无法直接播放，可通过下方链接打开视频。</p></video><button type="button" class="project-video-start" aria-controls="yingji-demo" hidden>播放演示</button></div><figcaption>90 秒 · 竖屏录屏 · 手动播放，可暂停或全屏观看。<br/><a href="https://b2913336346-code.github.io/videos/projects/yingji/demo-90s.mp4">打开完整演示视频 ↗</a></figcaption></figure></div>
+<aside class="notice">源码、公开开发文档与已发布 APK 请通过上方 GitHub 链接查看。真实 API Key、个人观影记录及其他敏感配置不会放入网站。</aside></article><section class="content prose" aria-labelledby="journal-heading"><h2 id="journal-heading">开发日志</h2><article class="log"><span>阶段记录 · 日期待补充</span><strong><a href="/eames-continuous-preview/journal/yingji-foundation/">基础影视记录功能 ↗</a></strong><p>实现作品管理、分类、标签、观看状态等基础能力。</p></article><article class="log"><span>阶段记录 · 日期待补充</span><strong><a href="/eames-continuous-preview/journal/yingji-ai/">AI 能力集成 ↗</a></strong><p>已接入 DeepSeek API，基于观影习惯的影视推荐已可用；开发中的主要难点是推荐数据来源。</p></article><article class="log"><span>当前阶段</span><strong><a href="/eames-continuous-preview/journal/yingji-iteration/">持续迭代 ↗</a></strong><p>继续完善交互、测试与功能体验，已整理独立验收版界面与功能演示。</p></article><a class="btn" href="/eames-continuous-preview/#journal-section">全部开发日志 <span class="motion-arrow" aria-hidden="true">↗</span></a></section><nav class="next-project reveal" aria-label="下一项目">
+  <a class="next-project-link" href="/eames-continuous-preview/project/club/">
+    <img src="/eames-continuous-preview/_astro/club-admin-form.DqnBFpib_eFQ1V.webp" alt="社团管理平台管理端的用户信息表单" width="128" height="96" loading="lazy" decoding="async">
+    <span><small>下一项目</small><strong>大学生社团管理平台 <span class="motion-arrow" aria-hidden="true">↗</span></strong><span>围绕入社申请、活动报名与后续记录的毕业设计。</span></span>
+  </a>
+</nav>
+<a class="btn" href="/eames-continuous-preview/#work-section">← 返回项目列表</a></div></div></main><footer class="footer"><div class="wrap footer-inner"><div class="site-social"><a href="mailto:2913336346@qq.com">邮箱</a><a href="https://github.com/b2913336346-code">GitHub</a><a href="https://space.bilibili.com/402939839">哔哩哔哩</a></div><p class="small">© <span id="year">2026</span> 卜文旭 / Eames</p></div></footer><dialog id="image-viewer" class="image-viewer" aria-labelledby="image-viewer-title" aria-describedby="image-viewer-help"><div class="image-viewer-panel"><header class="image-viewer-header"><h2 id="image-viewer-title">图片预览</h2><form method="dialog"><button class="image-viewer-close" aria-label="关闭图片预览" autofocus>关闭 <span aria-hidden="true">×</span></button></form></header><div class="image-viewer-stage" data-viewer-stage></div><div class="image-viewer-footer"><p class="image-viewer-status" role="status" data-viewer-status></p><p id="image-viewer-help">点击空白处或按 Esc 关闭</p></div></div></dialog><script type="module" src="/eames-continuous-preview/_astro/BaseLayout.astro_astro_type_script_index_0_lang.DyvDpbc-.js"></script><script type="module" src="/eames-continuous-preview/_astro/motion.js"></script><script type="module" src="/eames-continuous-preview/_astro/continuous/return.js"></script></body></html>

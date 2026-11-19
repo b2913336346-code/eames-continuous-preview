@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>兴趣 | EAMES.</title>
+<link rel="canonical" href="https://b2913336346-code.github.io/#interests-section">
+<script>
+  const known = ["cinema", "cinema-heading", "gaming", "gaming-heading", "image-viewer", "image-viewer-help", "image-viewer-title", "theme", "travel", "travel-heading", "watchlist-heading", "year"];
+  let fragment;
+  try { fragment = decodeURIComponent(location.hash.slice(1)); } catch {}
+  const section = known.includes(fragment) ? fragment : "interests-section";
+  location.replace("/eames-continuous-preview/" + location.search + "#" + encodeURIComponent(section));
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=/eames-continuous-preview/#interests-section"></noscript>
+<p><a href="/eames-continuous-preview/#interests-section">前往首页的兴趣章节</a></p>
+</html>

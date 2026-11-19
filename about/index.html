@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>关于我 | EAMES.</title>
+<link rel="canonical" href="https://b2913336346-code.github.io/#about-section">
+<script>
+  const known = ["image-viewer", "image-viewer-help", "image-viewer-title", "personal-keywords", "theme", "year", "\u4e00\u4e2a\u8fd8\u5728\u63a2\u7d22\u7684\u4eba", "\u4ece\u60f3\u6cd5\u5230\u771f\u5b9e\u4f5c\u54c1", "\u5728\u5b9e\u9645\u5de5\u4f5c\u4e2d\u79ef\u7d2f\u7ecf\u9a8c", "\u5de5\u4f5c\u4e4b\u5916\u7684\u7247\u6bb5", "\u628a\u5174\u8da3\u5ef6\u4f38\u4e3a\u9879\u76ee", "\u6821\u56ed\u4e2d\u7684\u53e6\u4e00\u90e8\u5206", "\u72ec\u7acb\u5b8c\u6210\u4e00\u5957\u8f6f\u4ef6\u9879\u76ee", "\u76ee\u524d\u7684\u63a2\u7d22"];
+  let fragment;
+  try { fragment = decodeURIComponent(location.hash.slice(1)); } catch {}
+  const section = known.includes(fragment) ? fragment : "about-section";
+  location.replace("/eames-continuous-preview/" + location.search + "#" + encodeURIComponent(section));
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=/eames-continuous-preview/#about-section"></noscript>
+<p><a href="/eames-continuous-preview/#about-section">前往首页的关于我章节</a></p>
+</html>

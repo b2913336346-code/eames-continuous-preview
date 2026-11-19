@@ -1,0 +1,246 @@
+.home-exhibit {
+  --exhibit-edge: #6b8499;
+  --exhibit-matte: #f4f6f7;
+  --exhibit-metal: #c5cdd2;
+  isolation: isolate;
+}
+
+:root.dark .home-exhibit {
+  --exhibit-edge: #8aa0b3;
+  --exhibit-matte: #4e5d69;
+  --exhibit-metal: #798996;
+}
+
+.home-exhibit > :is(main, .footer) {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.home-exhibit .nav {
+  background: color-mix(in srgb, var(--bg) 97%, transparent);
+}
+
+.home-spatial {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-spatial::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image: linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: clamp(62px, 9vw, 144px) clamp(62px, 9vw, 144px);
+  mask-image: radial-gradient(ellipse at 66% 42%, transparent 24%, #000 100%);
+  opacity: .13;
+}
+
+.home-spatial .spatial-surface {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border: 0;
+  background: transparent;
+}
+
+.home-spatial .spatial-surface canvas {
+  position: fixed;
+  pointer-events: none;
+}
+
+.home-exhibit .hero,
+.home-exhibit .section {
+  position: relative;
+  isolation: isolate;
+}
+
+.home-exhibit .hero h1,
+.home-exhibit .hero > .eyebrow {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.home-exhibit :is(.hero-foot .hero-desc, .hero > .eyebrow, .section-head > *,
+  .intro-large, .two > :last-child, .footer-inner > *, .linkline) {
+  position: relative;
+  isolation: isolate;
+}
+
+.home-exhibit :is(.hero-foot .hero-desc, .hero > .eyebrow, .section-head > *,
+  .intro-large, .two > :last-child, .footer-inner > *, .linkline)::before {
+  position: absolute;
+  z-index: -1;
+  inset: -10px -15px;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  filter: blur(12px);
+  content: "";
+  pointer-events: none;
+}
+
+.home-exhibit .section-head p {
+  font-size: max(14px, .875rem);
+}
+
+.exhibit-poster {
+  position: absolute;
+  z-index: -1;
+  top: var(--poster-y, 50%);
+  inset-inline-end: var(--poster-end, 0);
+  width: min(var(--poster-width, 43%), 530px);
+  height: auto;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.home-exhibit .hero .exhibit-poster {
+  --poster-y: 48%;
+}
+
+#about-section .exhibit-poster {
+  --poster-y: 56%;
+  --poster-end: 5%;
+  --poster-width: 43%;
+}
+
+#work-section .exhibit-poster {
+  --poster-y: 46%;
+  --poster-width: 46%;
+}
+
+#journey-section .exhibit-poster {
+  --poster-y: 52%;
+  --poster-end: 53%;
+}
+
+#interests-section .exhibit-poster {
+  --poster-y: 44%;
+  --poster-end: 17%;
+  --poster-width: 64%;
+}
+
+#connect-section .exhibit-poster {
+  --poster-y: 61%;
+  --poster-end: 5%;
+  --poster-width: 26%;
+}
+
+.home-exhibit #work-section .section-head {
+  display: block;
+  margin-bottom: 32px;
+}
+
+.home-exhibit #work-section .section-head h2 {
+  font-size: clamp(38px, 4.8vw, 66px);
+}
+
+.home-exhibit .project-grid {
+  width: min(53%, 560px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 9px;
+}
+
+.home-exhibit .project-art {
+  display: none;
+}
+
+.home-exhibit .project {
+  border-inline-start: 2px solid var(--line);
+  background-color: color-mix(in srgb, var(--card) 97%, transparent);
+}
+
+.home-exhibit .project:is(.home-work-active, :hover, :focus-visible) {
+  border-inline-start-color: var(--exhibit-edge);
+}
+
+.home-exhibit .project-body {
+  padding: 15px 18px 14px;
+}
+
+.home-exhibit .project-body h3 {
+  font-size: clamp(18px, 2.3vw, 23px);
+}
+
+.home-exhibit .project-body p {
+  min-height: 0;
+  margin-block: 4px 9px;
+  font-size: 14px;
+}
+
+.home-exhibit .project-meta {
+  padding-top: 7px;
+  font-size: 12px;
+}
+
+.home-exhibit .interest {
+  background: color-mix(in srgb, var(--card) 93%, transparent);
+}
+
+@media (width > 900px) and (height <= 760px) {
+  .home-exhibit .hero {
+    padding-block: 44px 32px;
+  }
+
+  .home-exhibit .hero h1 {
+    margin-block: 18px 25px;
+    font-size: clamp(62px, min(10.8vw, 15.4svh), 144px);
+  }
+}
+
+@media (width <= 900px) {
+  .home-exhibit .hero {
+    min-height: 0;
+  }
+
+  .home-exhibit .exhibit-poster {
+    display: block;
+    position: relative;
+    z-index: auto;
+    inset: auto;
+    width: min(100%, 520px);
+    max-height: 280px;
+    margin: -12px auto 24px;
+    object-fit: contain;
+    transform: none;
+  }
+
+  .home-exhibit .hero .exhibit-poster {
+    margin-block: -6px 16px;
+  }
+
+  #about-section .exhibit-poster,
+  #journey-section .exhibit-poster,
+  #interests-section .exhibit-poster,
+  #connect-section .exhibit-poster {
+    max-height: 175px;
+  }
+
+  .home-exhibit .project-grid {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-exhibit .hero-line {
+    animation: none;
+  }
+}
+
+.home-exhibit .exhibit-poster-dark,
+:root.dark .home-exhibit .exhibit-poster:not(.exhibit-poster-dark) {
+  display: none;
+}
+
+:root.dark .home-exhibit .exhibit-poster-dark {
+  display: block;
+}
+
+.home-exhibit:has(.home-spatial.spatial-ready) .exhibit-poster {
+  display: none;
+}

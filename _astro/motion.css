@@ -1,0 +1,410 @@
+:root {
+  --motion-feedback: 180ms;
+  --motion-enter: 380ms;
+  --motion-theme: 240ms;
+  --motion-step: 55ms;
+  --motion-distance: 12px;
+  --motion-ease: cubic-bezier(.2, .7, .2, 1);
+  --anchor-offset: 96px;
+  --motion-line: color-mix(in srgb, var(--fg) 55%, var(--line));
+}
+
+:where(main, main [id]) {
+  scroll-margin-top: var(--anchor-offset);
+}
+
+@media (width <= 760px) {
+  :root {
+    --anchor-offset: 84px;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 14.5vw, 104px);
+  }
+}
+
+/* Route links remain available if the shared navigation script fails to load. */
+:root:not(.nav-enhanced) .nav .actions {
+  display: none;
+}
+
+@media (width <= 1000px) {
+  :root:not(.nav-enhanced) header.nav {
+    position: static;
+  }
+
+  :root:not(.nav-enhanced) .nav .mobile-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 20px;
+    padding: 6px 20px;
+  }
+
+  :root:not(.nav-enhanced) .nav .mobile-panel a {
+    border: 0;
+  }
+}
+
+:is(.navlinks, .mobile-panel) a {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 6px;
+  transition: color var(--motion-feedback) var(--motion-ease),
+    text-decoration-color var(--motion-feedback) var(--motion-ease);
+}
+
+:is(.navlinks, .mobile-panel) a:is([aria-current], :focus-visible) {
+  color: var(--fg);
+  text-decoration-color: currentColor;
+}
+
+:where(a, button, summary, video):focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 4px;
+}
+
+:is(.prose, .linkline, .footer) a:not(.btn, .life-image-link, .project) {
+  text-underline-offset: 4px;
+  transition: color var(--motion-feedback) var(--motion-ease),
+    text-decoration-color var(--motion-feedback) var(--motion-ease);
+}
+
+:is(.linkline, .footer-links) a {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+
+:is(.project, .interest, .next-project-link, .btn, .iconbtn, .hero .arrow) {
+  transition: transform var(--motion-feedback) var(--motion-ease),
+    border-color var(--motion-feedback) var(--motion-ease),
+    background-color var(--motion-feedback) var(--motion-ease),
+    color var(--motion-feedback) var(--motion-ease);
+}
+
+.motion-arrow,
+.hero .arrow > span {
+  display: inline-block;
+  transition: transform var(--motion-feedback) var(--motion-ease);
+}
+
+:is(.project, .interest, .next-project-link):focus-visible {
+  border-color: var(--motion-line);
+}
+
+[data-in-page-nav] .interest[aria-current="location"] {
+  border-color: var(--motion-line);
+}
+
+[data-in-page-nav] .interest[aria-current="location"] h2 {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.journal-card h2 a {
+  text-decoration-color: var(--muted);
+  transition: text-decoration-color var(--motion-feedback) var(--motion-ease);
+}
+
+.journal-card h2 a:is(:hover, :focus-visible) {
+  text-decoration-color: currentColor;
+}
+
+.life-image-link,
+.contact-code > summary {
+  transition: border-color var(--motion-feedback) var(--motion-ease),
+    color var(--motion-feedback) var(--motion-ease);
+}
+
+.life-image-link:focus-visible {
+  border-color: var(--motion-line);
+}
+
+.contact-code[open] > summary,
+.contact-code > summary:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+:is(.btn, .iconbtn):focus-visible {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+a:focus-visible :is(.motion-arrow, .hero .arrow > span) {
+  transform: translateX(3px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(.project, .interest, .next-project-link):hover {
+    background-color: var(--bg);
+    border-color: var(--motion-line);
+    transform: translateY(-3px);
+  }
+
+  :is(.navlinks, .mobile-panel, .prose, .linkline, .footer) a:not(.project):hover {
+    text-decoration-color: currentColor;
+  }
+
+  a:hover :is(.motion-arrow, .hero .arrow > span) {
+    transform: translateX(3px);
+  }
+
+  .life-image-link:hover {
+    border-color: var(--motion-line);
+  }
+}
+
+:is(.btn, .iconbtn, .hero .arrow):active {
+  transform: translateY(1px);
+}
+
+/* The existing inline theme bootstrap runs before these styles load. */
+.theme-transition :is(body, .nav, .section, .footer, .hero-foot, .hero .outline,
+    .navlinks a, .mobile-panel a, .page-lead, .section-head p, .text-muted,
+    .eyebrow, .project, .interest, .project-meta, .project-body p, .event p,
+    .event > time, .timeline, .linkline, .small, .chip, .page-title,
+    .btn, .iconbtn, .article-toc, .article-toc a, .feature-panel, .notice, .prose p,
+    .prose li, .life-image-link, .next-project-link, .career-meta, .honor, .journal-card,
+    .journal-card p, .contact-code, .contact-code figcaption),
+.theme-transition .event::before {
+  transition-duration: var(--motion-theme);
+  transition-property: background-color, color, border-color, text-decoration-color, -webkit-text-stroke-color;
+  transition-timing-function: var(--motion-ease);
+}
+
+:is(.project-grid, .interest-grid) > .reveal:nth-child(3n + 2),
+.hero-line:nth-child(2) {
+  --enter-delay: var(--motion-step);
+}
+
+:is(.project-grid, .interest-grid) > .reveal:nth-child(3n),
+.hero-line:nth-child(3) {
+  --enter-delay: calc(2 * var(--motion-step));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-header,
+  .hero-line,
+  .reveal-is-entering {
+    animation: motion-enter var(--motion-enter) var(--motion-ease) var(--enter-delay, 0ms) backwards;
+  }
+
+  .hero-line,
+  .page-header {
+    --enter-opacity: .92;
+  }
+
+  .page-header {
+    --motion-distance: 8px;
+  }
+
+  .reveal-is-entering:focus-within,
+  .reveal-is-entering:has(:target) {
+    animation: none;
+  }
+
+  @keyframes motion-enter {
+    from {
+      opacity: var(--enter-opacity, .82);
+      transform: translateY(var(--motion-distance));
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+[data-journey] {
+  position: relative;
+}
+
+[data-journey]::before {
+  position: absolute;
+  top: 13px;
+  left: -1px;
+  width: 1px;
+  height: var(--journey-length, 0px);
+  background: var(--motion-line);
+  content: "";
+  pointer-events: none;
+  transform: scaleY(var(--journey-progress, 0));
+  transform-origin: top;
+}
+
+[data-journey] .event[aria-current="step"]::before {
+  outline: 1px solid var(--motion-line);
+  outline-offset: 3px;
+}
+
+[data-journey] .event[aria-current="step"] > :is(.eyebrow, time, .career-meta),
+.career-entry:target > .career-meta {
+  color: var(--fg);
+  font-weight: 700;
+}
+
+.reading-progress {
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 2px;
+  background: var(--motion-line);
+  pointer-events: none;
+  transform: scaleX(var(--reading-progress, 0));
+  transform-origin: left;
+}
+
+.article-toc a[aria-current="location"] {
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+}
+
+.article-toc summary .toc-current {
+  margin: 0 0 0 12px;
+  overflow-wrap: anywhere;
+}
+
+.article-toc summary .toc-current:not([hidden])::before {
+  content: "当前 · ";
+}
+
+:is(.article-toc, .feature-panel, .contact-code):not([open]) > :is(nav, .feature-content, figure) {
+  interactivity: inert;
+}
+
+@supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+  @media (prefers-reduced-motion: no-preference) {
+    :is(.article-toc, .feature-panel, .contact-code)::details-content {
+      block-size: 0;
+      overflow: clip;
+      interpolate-size: allow-keywords;
+      transition: block-size var(--motion-enter) var(--motion-ease),
+        content-visibility var(--motion-enter) allow-discrete;
+    }
+
+    :is(.article-toc, .feature-panel, .contact-code)[open]::details-content {
+      block-size: auto;
+    }
+
+    /* Settle the TOC before following an anchor while it is still opening. */
+    .article-toc:has(nav a:is(:focus, :active))::details-content {
+      transition: none;
+    }
+
+    :is(.article-toc, .feature-panel):focus-within::details-content {
+      overflow: hidden;
+      overflow-clip-margin: 0;
+    }
+  }
+}
+
+.feature-list {
+  border-bottom: 1px solid var(--line);
+  margin: 24px 0 32px;
+}
+
+.feature-panel {
+  border-top: 1px solid var(--line);
+  background: var(--card);
+}
+
+.feature-panel > summary {
+  cursor: pointer;
+  font-weight: 650;
+  padding: 14px 16px;
+}
+
+.feature-panel > summary:focus-visible {
+  outline-offset: -4px;
+}
+
+.feature-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 240px);
+  gap: 16px 24px;
+  padding: 0 16px 20px;
+}
+
+.feature-content p {
+  margin: 0;
+}
+
+.feature-content figure {
+  width: 100%;
+  max-width: 240px;
+  padding: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .feature-panel[open] .feature-content figure {
+    animation: feature-image-in var(--motion-theme) var(--motion-ease);
+  }
+
+  @keyframes feature-image-in {
+    from { opacity: .65; }
+    to { opacity: 1; }
+  }
+}
+
+@media (width <= 600px) {
+  .feature-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.video-replay {
+  cursor: pointer;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 44px;
+}
+
+.next-project {
+  max-width: 790px;
+  margin: 32px 0 0;
+}
+
+.next-project-link {
+  display: grid;
+  grid-template-columns: minmax(0, 112px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(12px, 3vw, 24px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 12px;
+}
+
+.next-project-link img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.next-project-link > span {
+  display: grid;
+  gap: 3px;
+}
+
+.next-project-link small,
+.next-project-link > span > span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (width <= 480px) {
+  .next-project-link {
+    grid-template-columns: minmax(0, 72px) minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-journey]::before {
+    display: none;
+  }
+
+  :is(.project, .interest, .next-project-link, .btn, .iconbtn, .hero .arrow, .motion-arrow, .hero .arrow > span) {
+    transform: none !important;
+  }
+}

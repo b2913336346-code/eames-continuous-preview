@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>成长 | EAMES.</title>
+<link rel="canonical" href="https://b2913336346-code.github.io/#journey-section">
+<script>
+  const known = ["image-viewer", "image-viewer-help", "image-viewer-title", "theme", "year"];
+  let fragment;
+  try { fragment = decodeURIComponent(location.hash.slice(1)); } catch {}
+  const section = known.includes(fragment) ? fragment : "journey-section";
+  location.replace("/eames-continuous-preview/" + location.search + "#" + encodeURIComponent(section));
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=/eames-continuous-preview/#journey-section"></noscript>
+<p><a href="/eames-continuous-preview/#journey-section">前往首页的成长章节</a></p>
+</html>
